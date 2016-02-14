@@ -115,8 +115,7 @@ weather.updateWeatherForecast = function () {
 			var _opacity = 1,
 				_forecastHtml = '<tr>',
 				_forecastHtml2 = '<tr>',
-				_forecastHtml3 = '<tr>',
-				_forecastHtml4 = '<tr>';
+				_forecastHtml3 = '<tr>';
 
 			_forecastHtml = '<table class="forecast-table"><tr>';
 
@@ -128,29 +127,26 @@ weather.updateWeatherForecast = function () {
 				if (this.orientation == 'vertical') {
 					_forecastHtml2 = '';
 					_forecastHtml3 = '';
-					_forecastHtml4 = '';
 				}
 
 				_forecastHtml += '<td style="opacity:' + _opacity + '" class="day">' + moment(_forecast.dt, 'X').format('ddd') + '</td>';
 				_forecastHtml2 += '<td style="opacity:' + _opacity + '" class="icon-small ' + this.iconTable[_forecast.weather[0].icon] + '"></td>';
-				_forecastHtml3 += '<td style="opacity:' + _opacity + '" class="temp-max">' + this.roundValue(_forecast.temp.max) + '</td>';
-				_forecastHtml4 += '<td style="opacity:' + _opacity + '" class="temp-min">' + this.roundValue(_forecast.temp.min) + '</td>';
+				_forecastHtml3 += '<td style="opacity:' + _opacity + '" class="temp-max">' + this.roundValue(_forecast.temp.max) + ' / ' + this.roundValue(_forecast.temp.min) + '</td>';
 
 				_opacity -= 0.155;
 
 				if (this.orientation == 'vertical') {
-					_forecastHtml += _forecastHtml2 + _forecastHtml3 + _forecastHtml4 + '</tr>';
+					_forecastHtml += _forecastHtml2 + _forecastHtml3 + '</tr>';
 				}
 			}
 			_forecastHtml  += '</tr>',
 			_forecastHtml2 += '</tr>',
-			_forecastHtml3 += '</tr>',
-			_forecastHtml4 += '</tr>';
+			_forecastHtml3 += '</tr>';
 			
 			if (this.orientation == 'vertical') {
 				_forecastHtml += '</table>';
 			} else {
-				_forecastHtml += _forecastHtml2 + _forecastHtml3 + _forecastHtml4 +'</table>';
+				_forecastHtml += _forecastHtml2 + _forecastHtml3 + '</table>';
 			}
 
 			$(this.forecastLocation).updateWithText(_forecastHtml, this.fadeInterval);
