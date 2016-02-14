@@ -104,7 +104,7 @@ weather.updateCurrentWeather = function () {
 }
 
 /**
- * Updates the 5 Day Forecast from the OpenWeatherMap API
+ * Updates the N days forecast from the OpenWeatherMap API
  */
 weather.updateWeatherForecast = function () {
 	$.ajax({
@@ -120,7 +120,9 @@ weather.updateWeatherForecast = function () {
 
 			_forecastHtml = '<table class="forecast-table"><tr>';
 
-			for (var i = 0, count = data.list.length; i < count; i++) {
+			var forecastNumDays = data.list.length > weather.params.forecastDays ? weather.params.forecastDays : data.list.length;
+
+			for (var i = 0, count = forecastNumDays; i < count; i++) {
 				var _forecast = data.list[i];
 				
 				if (this.orientation == 'vertical') {

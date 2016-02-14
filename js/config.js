@@ -12,7 +12,8 @@ var config = {
             units: 'imperial',
             // if you want a different lang for the weather that what is set above, change it here
             lang: 'en',
-            APPID: 'b227a533d15d3d8af2396ed411cb56a6'
+            APPID: 'b227a533d15d3d8af2396ed411cb56a6',
+            forecastDays: 3,
         }
     },
     compliments: {
