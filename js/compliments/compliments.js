@@ -15,9 +15,6 @@ var compliments = {
  * Changes the compliment visible on the screen
  */
 compliments.updateCompliment = function () {
-
-
-
 	var _list = [];
 
 	var hour = moment().hour();
@@ -25,7 +22,6 @@ compliments.updateCompliment = function () {
 	// In the followign if statement we use .slice() on the
 	// compliments array to make a copy by value. 
 	// This way the original array of compliments stays in tact.
-
 	if (hour >= 3 && hour < 12) {
 		// Morning compliments
 		_list = compliments.complimentList['morning'].slice();
@@ -56,15 +52,12 @@ compliments.updateCompliment = function () {
 	compliments.currentCompliment = _list[_randomIndex];
 
 	$('.compliment').updateWithText(compliments.currentCompliment, compliments.fadeInterval);
-
 }
 
 compliments.init = function () {
-
 	this.updateCompliment();
 
 	this.intervalId = setInterval(function () {
 		this.updateCompliment();
 	}.bind(this), this.updateInterval)
-
 }

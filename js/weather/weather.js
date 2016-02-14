@@ -66,14 +66,12 @@ weather.ms2Beaufort = function(ms) {
  * Retrieves the current temperature and weather patter from the OpenWeatherMap API
  */
 weather.updateCurrentWeather = function () {
-
 	$.ajax({
 		type: 'GET',
 		url: weather.apiBase + '/' + weather.apiVersion + '/' + weather.weatherEndpoint,
 		dataType: 'json',
 		data: weather.params,
 		success: function (data) {
-
 			var _temperature = this.roundValue(data.main.temp),
 				_temperatureMin = this.roundValue(data.main.temp_min),
 				_temperatureMax = this.roundValue(data.main.temp_max),
@@ -98,26 +96,22 @@ weather.updateCurrentWeather = function () {
 			}
 
 			$(this.windSunLocation).updateWithText(_newWindHtml + ' ' + _newSunHtml,this.fadeInterval);
-
 		}.bind(this),
 		error: function () {
 
 		}
 	});
-
 }
 
 /**
  * Updates the 5 Day Forecast from the OpenWeatherMap API
  */
 weather.updateWeatherForecast = function () {
-
 	$.ajax({
 		type: 'GET',
 		url: weather.apiBase + '/' + weather.apiVersion + '/' + weather.forecastEndpoint,
 		data: weather.params,
 		success: function (data) {
-
 			var _opacity = 1,
 				_forecastHtml = '<tr>',
 				_forecastHtml2 = '<tr>',
@@ -127,7 +121,6 @@ weather.updateWeatherForecast = function () {
 			_forecastHtml = '<table class="forecast-table"><tr>';
 
 			for (var i = 0, count = data.list.length; i < count; i++) {
-
 				var _forecast = data.list[i];
 				
 				if (this.orientation == 'vertical') {
@@ -165,11 +158,9 @@ weather.updateWeatherForecast = function () {
 
 		}
 	});
-
 }
 
 weather.init = function () {
-
 	if (this.params.lang === undefined) {
 		this.params.lang = this.lang;
 	}
