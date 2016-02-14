@@ -73,9 +73,6 @@ weather.updateCurrentWeather = function () {
 		data: weather.params,
 		success: function (data) {
 			var _temperature = this.roundValue(data.main.temp),
-				_temperatureMin = this.roundValue(data.main.temp_min),
-				_temperatureMax = this.roundValue(data.main.temp_max),
-				_wind = this.roundValue(data.wind.speed),
 				_iconClass = this.iconTable[data.weather[0].icon];
 
 			var _icon = '<span class="icon ' + _iconClass + ' dimmed wi"></span>';
@@ -84,18 +81,10 @@ weather.updateCurrentWeather = function () {
 
 			$(this.temperatureLocation).updateWithText(_newTempHtml, this.fadeInterval);
 
-			var _now = moment().format('HH:mm'),
-				_sunrise = moment(data.sys.sunrise*1000).format('HH:mm'),
-				_sunset = moment(data.sys.sunset*1000).format('HH:mm');
+			// var _weatherLocation = '<span class="sun">' + data.sys['name'] + '</span>';
+			var _weatherLocation = '<span class="sun">Chicago, IL</span>';
 
-			var _newWindHtml = '<span class="wind"><span class="wi wi-strong-wind xdimmed"></span> ' + this.ms2Beaufort(_wind) + '</span>',
-				_newSunHtml = '<span class="sun"><span class="wi wi-sunrise xdimmed"></span> ' + _sunrise + '</span>';
-
-			if (_sunrise < _now && _sunset > _now) {
-				_newSunHtml = '<span class="sun"><span class="wi wi-sunset xdimmed"></span> ' + _sunset + '</span>';
-			}
-
-			$(this.windSunLocation).updateWithText(_newWindHtml + ' ' + _newSunHtml,this.fadeInterval);
+			$(this.windSunLocation).updateWithText(_weatherLocation, this.fadeInterval);
 		}.bind(this),
 		error: function () {
 

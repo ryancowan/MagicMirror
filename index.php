@@ -15,7 +15,7 @@
     </head>
   <body>
     <div class="top right">
-      <!-- <div class="windsun small dimmed"></div> -->
+      <div class="windsun small dimmed"></div>
       <div class="temp"></div>
       <div class="forecast small dimmed"></div>
     </div>
